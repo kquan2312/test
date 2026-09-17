@@ -15,7 +15,9 @@ class Todo(Base):
     """Todo model."""
 
     __tablename__ = "todos"
-    __table_args__ = (Index("ix_todos_user_id", "user_id"),)
+    __table_args__ = (
+        Index("ix_todos_user_created_at", "user_id", "created_at", postgresql_using="btree"),
+    )
 
     id: Mapped[uuid.UUID] = mapped_column(
         primary_key=True,
