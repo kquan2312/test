@@ -26,7 +26,7 @@ CACHE_TTL = 300  # 5 minutes
 @router.get("", response_model=TodoListResponse)
 async def list_todos(
     page: int = Query(1, ge=1),
-    size: int = Query(20, ge=1),
+    size: int = Query(20, ge=1, le=100),
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
     redis: RedisClient = Depends(get_redis),

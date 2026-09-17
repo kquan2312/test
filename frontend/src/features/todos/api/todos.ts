@@ -35,7 +35,7 @@ interface UpdateTodoRequest {
 export function useTodos(
   userId: string | undefined,
   page: number = 1,
-  size: number = 10000
+  size: number = 100
 ) {
   return useQuery({
     queryKey: ["todos", userId, page, size],
