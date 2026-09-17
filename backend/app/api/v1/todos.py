@@ -47,8 +47,6 @@ async def list_todos(
 
     items = []
     for todo in todos:
-        user_result = await db.execute(select(User).where(User.id == todo.user_id))
-        user = user_result.scalar_one_or_none()
         items.append(
             TodoResponse(
                 id=todo.id,
@@ -58,7 +56,7 @@ async def list_todos(
                 user_id=todo.user_id,
                 created_at=todo.created_at,
                 updated_at=todo.updated_at,
-                user_email=user.email if user else None,
+                user_email=current_user.email,
             )
         )
 
